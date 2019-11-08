@@ -1,14 +1,17 @@
 CREATE TABLE Characters(
-    id INT NOT NULL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     first_name varchar(255) NOT NULL,
     middle_name varchar(255),
     last_name varchar(255),
+    date_of_birth DATE NOT NULL,
+    place_of_origin varchar(255) NOT NULL,
     alias varchar(255),
-    alignment_id INT FOREIGN KEY,
-    species varchar(20),
-    gender varchar(10),
-    date_of_birth DATE,
-    place_of_origin varchar(255),
-    FOREIGN KEY(alignment_id) REFERENCES Alignments(id)
+    alignment_id INT NOT NULL,
+    species_id INT NOT NULL,
+    gender_id INT NOT NULL,
+    FOREIGN KEY(alignment_id) REFERENCES Alignments(id),
+    FOREIGN KEY(species_id) REFERENCES Species(id),
+    FOREIGN KEY(gender_id) REFERENCES Genders(id)
 );
+
 DROP TABLE Characters;

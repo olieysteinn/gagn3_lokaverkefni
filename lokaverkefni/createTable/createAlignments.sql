@@ -1,4 +1,6 @@
 CREATE TABLE Alignments(
-    id INT NOT NULL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     alignment varchar(10) NOT NULL
 );
+
+DROP TABLE Alignments;

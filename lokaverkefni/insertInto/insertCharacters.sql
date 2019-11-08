@@ -1,4 +1,9 @@
-INSERT INTO Characters(id,first_name,middle_name,last_name,alias,date_of_birth,place_of_origin,gender,description)
-VALUES(1,"Anthony","Edward","Stark","Iron Man","1970-05-29","Manhattan, New York City","Male","");
-SELECT *
-FROM Characters;
+INSERT INTO Characters
+VALUES
+    (NULL,"Anthony","Edward","Stark","1970-05-29","Manhattan, New York City","Iron Man",1,1,1),
+    (NULL,"",,,,,,,,),
+    (NULL,,,,,,,,,),
+    (NULL,,,,,,,,,);
+
+SELECT * FROM Characters;
+DELETE FROM Characters;
