@@ -74,3 +74,6 @@ VALUES
 
 SELECT * FROM Characters;
 DELETE FROM Characters;
+
+SELECT first_name,last_name,alias
+FROM Characters;
