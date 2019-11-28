@@ -149,8 +149,3 @@ VALUES
 
 SELECT * FROM StaffJobs;
 DELETE FROM StaffJobs;
-
-SELECT Staff.first_name, Staff.last_name, Jobs.title
-FROM StaffJobs
-INNER JOIN Staff ON StaffJobs.staff_id = Staff.id
-INNER JOIN Jobs ON StaffJobs.job_id = Jobs.id;

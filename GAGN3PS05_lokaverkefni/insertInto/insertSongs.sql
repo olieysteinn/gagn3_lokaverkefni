@@ -578,3 +578,4 @@ VALUES
     (NULL,"And Now This…","0:58");
 
 SELECT * FROM Songs;
+DELETE FROM Songs;

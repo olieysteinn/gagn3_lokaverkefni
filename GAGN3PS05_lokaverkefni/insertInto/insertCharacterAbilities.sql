@@ -19,11 +19,11 @@ VALUES
     (NULL,8,12),
     (NULL,8,2),
     (NULL,8,5),
-    (NULL,9,1),
-    (NULL,9,4),
-    (NULL,9,12),
-    (NULL,9,2),
-    (NULL,9,5),
+    (NULL,10,1),
+    (NULL,10,4),
+    (NULL,10,12),
+    (NULL,10,2),
+    (NULL,10,5),
     (NULL,14,1),
     (NULL,14,4),
     (NULL,14,12),
@@ -133,12 +133,15 @@ VALUES
     (NULL,42,1),
     (NULL,42,4),
     (NULL,42,5),
+    (NULL,42,16),
     (NULL,44,1),
     (NULL,44,4),
     (NULL,44,9),
     (NULL,44,7),
+    (NULL,44,16),
     (NULL,45,1),
     (NULL,45,9),
+    (NULL,45,16),
     (NULL,45,7),
     (NULL,46,1),
     (NULL,46,4),
@@ -163,6 +166,7 @@ VALUES
     (NULL,52,11),
     (NULL,52,15),
     (NULL,53,11),
+    (NULL,53,15),
     (NULL,53,14),
     (NULL,54,4),
     (NULL,55,1),
@@ -229,8 +233,3 @@ VALUES
 
 SELECT * FROM CharacterAbilities;
 DELETE FROM CharacterAbilities;
-
-SELECT Characters.first_name, Characters.alias, Abilities.name
-FROM CharacterAbilities
-INNER JOIN Characters ON CharacterAbilities.character_id = Characters.id
-INNER JOIN Abilities ON CharacterAbilities.ability_id = Abilities.id;

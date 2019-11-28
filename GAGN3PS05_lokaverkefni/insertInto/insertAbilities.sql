@@ -14,7 +14,8 @@ VALUES
     (NULL,"Regenerative Healing Factor","The ability to heal rapidly from any physical injury"),
     (NULL,"Shapeshifting","The power to transform and reshape one's body."),
     (NULL,"Telekinesis","The power to manipulate objects and matter with one's mind."),
-    (NULL,"Teleportation","The ability to move instantaneously from one location to another without physically occupying the space in between.");
+    (NULL,"Teleportation","The ability to move instantaneously from one location to another without physically occupying the space in between."),
+    (NULL,"Size-Manipulation","The user can manipulate the size of themselves, from tiny to absolutely gigantic while retaining their physical proportions.");
 
 SELECT * FROM Abilities;
 DELETE FROM Abilities;

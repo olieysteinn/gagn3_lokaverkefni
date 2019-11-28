@@ -1,7 +1,7 @@
 INSERT INTO Alignments
 VALUES
-    (NULL,"Good"),
-    (NULL,"Evil");
+    (NULL,"Good","that which is morally right; righteousness."),
+    (NULL,"Evil","profound immorality and wickedness, especially when regarded as a supernatural force.");
 
-DELETE FROM Alignments;
 SELECT * FROM Alignments;
+DELETE FROM Alignments;

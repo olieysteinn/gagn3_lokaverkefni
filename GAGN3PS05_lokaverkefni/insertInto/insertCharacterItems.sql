@@ -107,8 +107,3 @@ VALUES
 
 SELECT * FROM CharacterItems;
 DELETE FROM CharacterItems;
-
-SELECT Characters.first_name, Characters.last_name, Characters.alias, Items.name
-FROM CharacterItems
-INNER JOIN Characters ON CharacterItems.character_id = Characters.id
-INNER JOIN Items ON CharacterItems.item_id = Items.id;

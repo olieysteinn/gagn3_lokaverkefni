@@ -223,12 +223,5 @@ VALUES
     (NULL,23,57,71,1),
     (NULL,23,23,3,1);
 
-SELECT Movies.title AS Movie, Characters.first_name AS "Character first name",
-    Characters.last_name AS "Character last name", Characters.alias AS "Alias",
-    Alignments.alignment as "Alignment", Staff.first_name AS "Actor first name",
-    Staff.last_name AS "Actor last name"
-FROM MovieCharacters
-INNER JOIN Movies ON MovieCharacters.movie_id = Movies.id
-INNER JOIN Characters ON MovieCharacters.character_id = Characters.id
-INNER JOIN Staff ON MovieCharacters.actor_id = Staff.id
-INNER JOIN Alignments ON MovieCharacters.alignment_id = Alignments.id;
+SELECT * FROM MovieCharacters;
+DELETE FROM MovieCharacters;

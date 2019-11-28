@@ -51,9 +51,5 @@ VALUES
     (NULL,8,68,"Former"),
     (NULL,8,37,"Former");
 
-SELECT Groups.name, Characters.first_name, Characters.last_name, Characters.alias, membership
-FROM GroupCharacters
-INNER JOIN Groups ON GroupCharacters.group_id = Groups.id
-INNER JOIN Characters ON GroupCharacters.character_id = Characters.id;
-
+SELECT * FROM GroupCharacters;
 DELETE FROM GroupCharacters;

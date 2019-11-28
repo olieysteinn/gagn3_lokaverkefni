@@ -579,8 +579,3 @@ VALUES
 
 SELECT * FROM SoundtrackSongs;
 DELETE FROM SoundtrackSongs;
-
-SELECT Soundtracks.title, Songs.title
-FROM SoundtrackSongs
-INNER JOIN Soundtracks ON SoundtrackSongs.soundtrack_id = Soundtracks.id
-INNER JOIN Songs ON SoundtrackSongs.song_id = Songs.id;
