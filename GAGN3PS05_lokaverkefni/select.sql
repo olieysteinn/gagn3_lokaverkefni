@@ -57,25 +57,53 @@ INNER JOIN Alignments ON MovieCharacters.alignment_id = Alignments.id;
 
 
 -- SONGS
+SELECT title, length FROM Songs
+ORDER BY length;
 
+SELECT strftime('%Y-%m-%d');
+SELECT length FROM Songs;
+SELECT strftime('%H-%M-%S',length) FROM Songs;
+
+SELECT Soundtracks.title, 
+    time(sum(strftime('%s', Songs.length)), 'unixepoch') AS "soundtrack length"
+FROM MovieSoundtrackSongs
+INNER JOIN Songs ON MovieSoundtrackSongs.song_id = Songs.id
+INNER JOIN Soundtracks ON MovieSoundtrackSongs.soundtrack_id = Soundtracks.id
+WHERE MovieSoundtrackSongs.movie_id = 1;
 
 -- SOUNDTRACKS
+SELECT title, releaseDate AS "release date", length,
+    Staff.first_name AS "composer first name",
+    Staff.last_name AS "composer last name"
+FROM Soundtracks
+INNER JOIN Staff ON Soundtracks.composer_id = Staff.id;
 
-
--- SOUNDTRACK SONGS
-SELECT Soundtracks.title, Songs.title
-FROM SoundtrackSongs
-INNER JOIN Soundtracks ON SoundtrackSongs.soundtrack_id = Soundtracks.id
-INNER JOIN Songs ON SoundtrackSongs.song_id = Songs.id;
+-- MOVIE SOUNDTRACK SONGS
+SELECT Movies.title AS movie,
+    Soundtracks.title AS soundtrack,
+    Songs.title AS song
+FROM MovieSoundtrackSongs
+INNER JOIN Movies ON MovieSoundtrackSongs.movie_id = Movies.id
+INNER JOIN Soundtracks ON MovieSoundtrackSongs.soundtrack_id = Soundtracks.id
+INNER JOIN Songs ON MovieSoundtrackSongs.song_id = Songs.id;
 
 -- SPECIES
-
+SELECT species, origin, description
+FROM Species;
 
 -- STAFF
-
+SELECT first_name AS "first name",
+    middle_name as "middle name",
+    last_name AS "last name",
+    (date('now')-age) || " years old" AS age
+FROM Staff
+ORDER BY first_name ASC, age DESC;
 
 -- STAFF JOBS
-SELECT Staff.first_name, Staff.last_name, Jobs.title
+SELECT Staff.first_name AS "first name",
+    Staff.last_name AS "last name",
+    Jobs.title AS "job"
 FROM StaffJobs
 INNER JOIN Staff ON StaffJobs.staff_id = Staff.id
-INNER JOIN Jobs ON StaffJobs.job_id = Jobs.id;
+INNER JOIN Jobs ON StaffJobs.job_id = Jobs.id
+ORDER BY title;
