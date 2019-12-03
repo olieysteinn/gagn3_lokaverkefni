@@ -6,6 +6,11 @@ INNER JOIN Movies ON MovieCharacters.movie_id = Movies.id
 inner JOIN Staff ON MovieCharacters.actor_id = Staff.id
 WHERE Movies.title LIKE "Avengers: Endgame";
 
+-- What what was the budget of each movie from most expensive to cheapest?
+SELECT title, printf('%,d', budget) || '$' AS budget
+FROM Movies
+ORDER BY budget DESC, releaseDate DESC;
+
 -- What was the total budget of all the movies in the MCU in $ and ISK?
 SELECT printf('%,d', sum(budget)) || '$' AS "total budget of movies in $",
     printf('%,d', (sum(budget)*122)) || ' ISK' AS "total budget of movies in ISK" 
@@ -35,7 +40,7 @@ SELECT first_name || " " || last_name AS "staff",
 FROM Staff
 ORDER BY date_of_birth DESC;
 
--- What abilities does the character with the most abilities have?
+-- Which character has the most abilities and what abilities does he have?
 SELECT Characters.first_name AS character, Abilities.name AS abilities
 FROM CharacterAbilities
 INNER JOIN Characters ON CharacterAbilities.character_id = Characters.id
@@ -90,32 +95,45 @@ INNER JOIN Characters ON MovieCharacters.character_id = Characters.id
 INNER JOIN Alignments ON MovieCharacters.alignment_id = Alignments.id
 WHERE alignment LIKE 'Evil'
 ORDER BY Characters.first_name;
-    
-SELECT DISTINCT alignment, count(alignment_id)
+
+-- How many characters are good and how many are evil?
+SELECT alignment, count(DISTINCT first_name) AS "amount of characters"
 FROM MovieCharacters
+INNER JOIN Characters ON MovieCharacters.character_id = Characters.id
 INNER JOIN Alignments ON MovieCharacters.alignment_id = Alignments.id
-GROUP BY Alignments.alignment;
-
-
--- which movie was the most expensive/cheap
-
--- how many movies came out in [year]
+GROUP BY alignment
+ORDER BY alignment DESC;
 
 -- which characters are from usa/earth
 
+
 -- which composer made the most soundtracks
+
 
 -- which director directed the most movies
 
--- who is the founder of S.H.I.E.L.D.
-SELECT datetime(22311);
 
--- How long has it been since every MCU movie has been released?
-SELECT ((julianday('now') - julianday(releaseDate)) / 365 % 365) || ' years and '
-    || ((julianday('now') - julianday(releaseDate)) % 365) || ' days'
-FROM Movies;
+-- who is the founder of S.H.I.E.L.D.
+
 
 -- What items are related to the infinity stones?
 SELECT name AS item, description
 FROM Items
 WHERE description LIKE "%infinity stone%";
+
+-- How many movies came out each year from 2008-2019?
+SELECT strftime('%Y', releaseDate) AS year, count(*) || ' movies' AS movies
+FROM Movies
+GROUP BY strftime('%Y', releaseDate);
+
+-- How much time has passed since each MCU movie has been released?
+-- ( það þarf að highlighta þetta query til þess að runna það. ¯\_(ツ)_/¯ )
+SELECT title AS movie, REPLACE(
+    CASE
+        WHEN ((julianday('now') - julianday(releaseDate)) / 365 % 365) = 0
+        THEN ((julianday('now') - julianday(releaseDate)) % 365) || ' days'
+        ELSE ((julianday('now') - julianday(releaseDate)) / 365 % 365) || ' years and '
+            || ((julianday('now') - julianday(releaseDate)) % 365) || ' days'
+    END,'.0','')
+    AS "time passed"
+FROM Movies;
