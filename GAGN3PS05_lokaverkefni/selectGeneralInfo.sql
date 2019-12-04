@@ -38,9 +38,10 @@ INNER JOIN Groups ON GroupCharacters.group_id = Groups.id
 INNER JOIN Characters ON GroupCharacters.character_id = Characters.id;
 
 -- GROUPS
-SELECT name, founder, affiliation
+SELECT name, founder, affiliation, alignment
 FROM Groups
-ORDER BY name ASC;
+INNER JOIN Alignments ON Groups.alignment_id = Alignments.id
+ORDER BY alignment DESC, name ASC;
 
 -- ITEMS
 SELECT name, description, creator 
@@ -130,3 +131,18 @@ FROM StaffJobs
 INNER JOIN Staff ON StaffJobs.staff_id = Staff.id
 INNER JOIN Jobs ON StaffJobs.job_id = Jobs.id
 ORDER BY title;
+
+-- LEGEND
+SELECT 
+    (SELECT DISTINCT Staff.last_name
+    FROM MovieCharacters
+    INNER JOIN Characters ON MovieCharacters.character_id = Characters.id
+    INNER JOIN Staff ON MovieCharacters.actor_id = Staff.id
+    WHERE Characters.alias LIKE 'Winter Soldier')
+    || ' ' ||
+    (SELECT DISTINCT Staff.first_name
+    FROM MovieCharacters
+    INNER JOIN Characters ON MovieCharacters.character_id = Characters.id
+    INNER JOIN Staff ON MovieCharacters.actor_id = Staff.id
+    WHERE Characters.alias LIKE 'Ronan the Accuser')
+AS LEGEND;
